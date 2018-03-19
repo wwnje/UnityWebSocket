@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>websocketd</title>
+</head>
+<body>
+<h2>websocketd 客户端的简单测试</h2>
+<pre id="log"></pre>
+<script>
+    // helper function: log message to screen
+    function log(msg) {
+        document.getElementById('log').textContent += msg + '\n';
+    }
+
+    // setup websocket with callbacks
+    var ws = new WebSocket('ws://localhost:8080/');
+    ws.onopen = function() {
+        console.log('CONNECT');
+    };
+    ws.onclose = function() {
+        console.log('DISCONNECT');
+    };
+    ws.onmessage = function(event) {
+        console.log('MESSAGE: ' + event.data);
+    };
+</script>
+</body>
+</html>
